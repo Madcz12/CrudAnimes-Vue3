@@ -1,16 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { getAnime } from './helpers/animes'
 export default {
+  async mounted() {
+    /* this.animes = await getAnime() */
+  },
+  methods: {
+    getAnime: async function () {
+      if (this.animes.length == 0)
+        this.animes = await getAnime();
+      return this.animes
+    }
+  },
+  data() {
+    return {
+      animes: [
+
+      ]
+    }
+  },
   name: 'App',
-  components: {
-    HelloWorld
-  }
+
 }
 </script>
 
